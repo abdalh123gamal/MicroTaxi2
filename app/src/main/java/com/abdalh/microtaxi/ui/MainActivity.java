@@ -1,20 +1,20 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
  import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
+import com.abdalh.microtaxi.R;
+import com.abdalh.microtaxi.ui.AboutMicroTaxi;
+import com.abdalh.microtaxi.ui.ActivitySelectType;
+import com.abdalh.microtaxi.ui.FeedBack;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,18 +50,18 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplication(),"لسه سجل رحلاتك فاضي ",Toast.LENGTH_LONG).show();
                         return true;
                     case R.id.drawer_menu_about_micro:
-                       startActivity(new Intent(getApplication(),AboutMicroTaxi.class));
+                       startActivity(new Intent(getApplication(), AboutMicroTaxi.class));
                        return true;
                     case R.id.drawer_menu_setting:
                         Toast.makeText(getApplication(),"الاعدادات",Toast.LENGTH_LONG).show();
                         return  true;
                     case R.id.drawer_menu_feedback:
-                        startActivity(new Intent(getApplication(),FeedBack.class));
+                        startActivity(new Intent(getApplication(), FeedBack.class));
                         return  true;
                     case R.id.drawer_menu_logout:
                         Toast.makeText(getApplication(),"جاري تسجيل الخروج",Toast.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(getApplicationContext(),ActivitySelectType.class));
+                        startActivity(new Intent(getApplicationContext(), ActivitySelectType.class));
                         finish();
 
 

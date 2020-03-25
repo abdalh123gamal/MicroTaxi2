@@ -5,7 +5,7 @@
     android:id="@+id/register_driver"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterDriver">
+    tools:context=".ui.RegisterDriver">
 
     <TextView
         android:id="@+id/register_driver_tv_title"

@@ -1,8 +1,10 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.abdalh.microtaxi.R;
 
 public class SettingProfile extends AppCompatActivity {
 

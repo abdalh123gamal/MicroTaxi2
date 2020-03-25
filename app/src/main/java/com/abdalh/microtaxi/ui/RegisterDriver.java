@@ -1,4 +1,4 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.abdalh.microtaxi.R;
+import com.abdalh.microtaxi.model.Driver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -83,7 +85,7 @@ public class RegisterDriver extends AppCompatActivity {
 
                         databaseReference.child(id).setValue(driver);
 
-                        startActivity(new Intent(getApplication(),MainActivity.class));
+                        startActivity(new Intent(getApplication(), MainActivity.class));
                         finish();
 
 

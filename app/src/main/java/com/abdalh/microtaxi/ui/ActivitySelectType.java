@@ -1,4 +1,4 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.abdalh.microtaxi.R;
 
 public class ActivitySelectType extends AppCompatActivity {
     ImageView iv_driver,iv_passenger;
@@ -20,14 +21,14 @@ public class ActivitySelectType extends AppCompatActivity {
         iv_driver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),SignInDriver.class));
+                startActivity(new Intent(getApplication(), SignInDriver.class));
 
             }
         });
         iv_passenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),SignInRider.class));
+                startActivity(new Intent(getApplication(), SignInRider.class));
 
             }
         });

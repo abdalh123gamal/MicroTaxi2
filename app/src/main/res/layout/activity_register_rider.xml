@@ -5,7 +5,7 @@
     android:id="@+id/register_rider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterRider">
+    tools:context=".ui.RegisterRider">
 
     <TextView
         android:id="@+id/register_rider_tv_title"

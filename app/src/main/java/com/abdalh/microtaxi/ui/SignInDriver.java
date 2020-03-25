@@ -1,4 +1,4 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.abdalh.microtaxi.R;
+import com.abdalh.microtaxi.ui.MainActivity;
+import com.abdalh.microtaxi.ui.RegisterDriver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -46,7 +49,7 @@ public class SignInDriver extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),RegisterDriver.class));
+                startActivity(new Intent(getApplication(), RegisterDriver.class));
             }
         });
     }
@@ -61,7 +64,7 @@ public class SignInDriver extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        startActivity(new Intent(getApplication(),MainActivity.class));
+                        startActivity(new Intent(getApplication(), MainActivity.class));
                         finish();
 
                     }

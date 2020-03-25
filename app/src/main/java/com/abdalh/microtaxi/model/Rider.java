@@ -1,4 +1,4 @@
-package com.abdalh.microtaxi;
+package com.abdalh.microtaxi.model;
 
 public class Rider {
     private String id, name,email,phone,password;

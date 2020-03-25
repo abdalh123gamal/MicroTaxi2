@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/sign_in_driver"
     android:background="@color/colorAccent"
-    tools:context=".SignInDriver">
+    tools:context=".ui.SignInDriver">
 
 
     <TextView
