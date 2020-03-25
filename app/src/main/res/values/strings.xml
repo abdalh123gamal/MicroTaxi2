@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">MicroTaxi</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <string name="about_tv_about_micro_taxi">About MicroTaxi</string>
+    <string name="about_tv_about_sub_micro_taxi">MicroTaxi application helps you to define your destination through several lines</string>
+    <string name="about_micro_tv_goals">Goals</string>
+    <string name="about_micro_tv_goals_sub">Facilitating the travel and transportation process for individuals and groups and providing mass transportation at all times. Give the opportunity for owners of minibuses working in the field of mobility services to work with a remunerative salary by registering with us on the application. Immediately and around the clock in an easy and fast way.</string>
+    <string name="about_micro_tv_customer_attention">Customer attention</string>
+    <string name="about_micro_tv_customer_attention_sub">One of our most important goals is to serve our customers through a huge team of cars and drivers based on your service 24 hours a day, seven days a week.</string>
+    <string name="about_micro_tv_our_mission">Our mission</string>
+    <string name="about_micro_tv_our_mission_sub">Our mission is to provide convenient and safe transportation services that our customers can rely on as a convenient alternative to cars. Therefore, we always follow the needs of travelers and review the provision of our services on an organized and appropriate basis for all needs. We work to provide reliable transportation services for passengers anytime and anywhere to meet all of our customers  needs and apply sound business principles in order to always be at the forefront. Our principle at Microtaxi is the comfort and luxury of travelers.</string>
+    <string name="about_micro_tv_our_vision">Our Vision</string>
+    <string name="about_micro_tv_our_vision_sub">“To be the world leader in developing transportation, and achieving the best results for our customers by providing comfort and luxury to all users of Microtax services ..”</string>
+
+    <string name="drawer_menu_ride_record">Ride Record</string>
+    <string name="drawer_menu_about_micro">About MicroTaxi</string>
+    <string name="drawer_menu_setting">Setting</string>
+    <string name="drawer_menu_feedback">Feedback</string>
+    <string name="drawer_menu_logout">LogOut</string>
+    <string name="drawer_menu_more">More</string>
+    <string name="drawer_menu_nav_send">Send the app to friend</string>
+
+    <string name="feedback_tv_title">Can you please let your hand down below</string>
+    <string name="feedback_tv_subtitle">Rate our app</string>
+    <string name="feedback_tv_horrible">Horrible</string>
+    <string name="feedback_tv_bad">Bad</string>
+    <string name="feedback_tv_it_is_ok">It\' Ok</string>
+    <string name="feedback_tv_good">Good</string>
+    <string name="feedback_tv_excellent">Excellent</string>
+
+    <string name="main_toast_application_in_progress">Application In Progress</string>
+    <string name="main_toast_the_application_is_now_operational">The application is now operational</string>
+
+
+    <string name="activity_select_type_tv_text_select">Please choose type</string>
+    <string name="activity_select_type_tv_driver">Driver</string>
+    <string name="activity_select_type_tv_passenger">Rider</string>
+
+    <string name="sign_in_rider_tv_title">Rider Login</string>
+    <string name="sign_in_rider_ed_hint_email">email</string>
+    <string name="sign_in_rider_ed_password">password</string>
+    <string name="sign_in_rider_tv_with">sign in with social</string>
+    <string name="sign_in_rider_btn_text_login">login</string>
+    <string name="sign_in_rider_btn_text_register">You do not have a rider account ?</string>
+
+    <string name="sign_in_driver_tv_title">Driver Login</string>
+    <string name="sign_in_driver_ed_hint_email">email</string>
+    <string name="sign_in_driver_ed_password">password</string>
+    <string name="sign_in_driver_tv_with">sign in with social</string>
+    <string name="sign_in_driver_btn_text_login">login</string>
+    <string name="sign_in_driver_btn_text_register">You do not have a driver account ?</string>
+
+    <string name="register_rider_tv_title">Create a new rider account</string>
+    <string name="register_rider_ed_hint_name">name</string>
+    <string name="register_rider_ed_hint_email">email</string>
+    <string name="register_rider_ed_hint_phone">mobile phone</string>
+    <string name="register_rider_ed_hint_password">password</string>
+
+    <string name="register_driver_tv_title">Create a new driver account</string>
+    <string name="register_driver_ed_hint_name">name</string>
+    <string name="register_driver_ed_hint_email">email</string>
+    <string name="register_driver_ed_hint_phone">mobile phone</string>
+    <string name="register_driver_ed_hint_password">password</string>
+
+    <string name="register_btn_text_register">Create</string>
+    <string name="register_driver_ed_hint_car_type">"car type "</string>
+
+
+</resources>

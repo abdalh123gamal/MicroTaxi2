@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ميكروتكس</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <string name="about_tv_about_micro_taxi">عن ميكروتكس</string>
+    <string name="about_tv_about_sub_micro_taxi">يساعدك تطبيق ميكروتكس على تحديد وجهتك من خلال عدة خطوط</string>
+    <string name="about_micro_tv_goals">الأهداف</string>
+    <string name="about_micro_tv_goals_sub">تسهيل عملية السفر والنقل للأفراد والمجموعات وتوفير النقل الجماعي في جميع الأوقات.امنح الفرصة لأصحاب الحافلات الصغيرة العاملة في مجال خدمات التنقل للعمل براتب مجزي من خلال التسجيل معنا علي تطبيق. مباشرة وعلى مدار الساعة بطريقة سهلة وسريعة.</string>
+    <string name="about_micro_tv_customer_attention">الإهتمام بالعملاء</string>
+    <string name="about_micro_tv_customer_attention_sub">أحد أهم أهدافنا هو خدمة عملائنا من خلال فريق ضخم من السيارات والسائقين بناءً على خدمتكم على مدار الساعة طوال أيام الأسبوع.</string>
+    <string name="about_micro_tv_our_mission">مهمتنا</string>
+    <string name="about_micro_tv_our_mission_sub">مهمتنا هي توفير خدمات نقل مريحة وآمنة يمكن لعملائنا الاعتماد عليها كبديل مناسب للسيارات. ولذلك نحن نقوم دائما بمتابعة احتياجات المسافرين ومراجعة تقديم خدماتنا على أساس منظم وملائم لجميع الاحتياجات. نحن نعمل على توفير خدمات نقل موثوقة للركاب في أي وقت وأي مكان لتلبية جميع احتياجات عملائنا وتطبيق مباديء أعمال سليمة من أجل أن نكون دائما في المقدمة. مبدأنا في ميكروتكسي هو راحة ورفاهية المسافرين.</string>
+    <string name="about_micro_tv_our_vision">رؤيتنا</string>
+    <string name="about_micro_tv_our_vision_sub">“أن تكون الشركة الرائدة عالميا في تطوير وسائل المواصلات، وتحقيق أفضل النتائج لعملائنا من خلال توفير الراحة والرفاهية لجميع مستخدمي خدمات ميكروتكس.. ”</string>
+
+    <string name="drawer_menu_ride_record">سجل الرحلات</string>
+    <string name="drawer_menu_about_micro">عن ميكروتكس</string>
+    <string name="drawer_menu_setting">الإعدادات</string>
+    <string name="drawer_menu_feedback">تقييم التطبيق</string>
+    <string name="drawer_menu_logout">تسجيل الخروج</string>
+    <string name="drawer_menu_more">المزيد</string>
+    <string name="drawer_menu_nav_send">إرسال التطبيق لصديق</string>
+
+    <string name="feedback_tv_title">من فضلك لو سمحت نزل إيدك لتحت</string>
+    <string name="feedback_tv_subtitle">قيم تطبيقنا</string>
+    <string name="feedback_tv_horrible">ليه كدا بس</string>
+    <string name="feedback_tv_bad">طب بحبحها شوية</string>
+    <string name="feedback_tv_it_is_ok">ماشي شغال</string>
+    <string name="feedback_tv_good">متشكرين يا رجولة</string>
+    <string name="feedback_tv_excellent">أنت راجل مية المية </string>
+
+    <string name="main_toast_application_in_progress">جاري إعداد التطبيق</string>
+    <string name="main_toast_the_application_is_now_operational">التطبيق جاهز للعمل الآن .. نتمني لك رحلة سعيدة </string>
+
+
+    <string name="activity_select_type_tv_text_select">يرجي اختيار نوع  المستخدم</string>
+    <string name="activity_select_type_tv_driver">سائق</string>
+    <string name="activity_select_type_tv_passenger">راكب</string>
+
+    <string name="sign_in_rider_tv_title">تسجيل دخول الراكب</string>
+    <string name="sign_in_rider_ed_hint_email">البريد الإلكتروني</string>
+    <string name="sign_in_rider_ed_password">كملة السر</string>
+    <string name="sign_in_rider_tv_with">تسجيل الدخول بواسطة </string>
+    <string name="sign_in_rider_btn_text_login">دخول</string>
+    <string name="sign_in_rider_btn_text_register">لا يوجد لديك حساب راكب ؟</string>
+
+    <string name="sign_in_driver_tv_title">تسجيل دخول السائق</string>
+    <string name="sign_in_driver_ed_hint_email">البريد الإلكتروني</string>
+    <string name="sign_in_driver_ed_password">كلمة السر</string>
+    <string name="sign_in_driver_tv_with">تسجيل الدخول بواسطة</string>
+    <string name="sign_in_driver_btn_text_login">دخول</string>
+    <string name="sign_in_driver_btn_text_register"> ليس لديك حساب سائق؟</string>
+
+    <string name="register_rider_tv_title">إنشاء حساب راكب جديد</string>
+    <string name="register_rider_ed_hint_name">الإسم</string>
+    <string name="register_rider_ed_hint_email">البريد الإلكتروني</string>
+    <string name="register_rider_ed_hint_phone">الهاتف المحمول</string>
+    <string name="register_rider_ed_hint_password">كلمة السر</string>
+    <string name="register_btn_text_register">إنشاء</string>
+
+
+    <string name="register_driver_tv_title">إنشاء حساب سائق جديد</string>
+    <string name="register_driver_ed_hint_name">الاسم</string>
+    <string name="register_driver_ed_hint_email">البريد الإلكتروني</string>
+    <string name="register_driver_ed_hint_phone">الهاتف المحمول </string>
+    <string name="register_driver_ed_hint_password">كلمة السر</string>
+    <string name="register_driver_ed_hint_car_type">نوع السيارة</string>
+
+
+
+
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "392007311118",
+    "firebase_url": "https://micro-tax.firebaseio.com",
+    "project_id": "micro-tax",
+    "storage_bucket": "micro-tax.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392007311118:android:9b5e09bee07ba89181015f",
+        "android_client_info": {
+          "package_name": "com.abdalh.microtaxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392007311118-ile8bard7d0pgfah62bps0smq7rbbkn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abdalh.microtaxi",
+            "certificate_hash": "9c463267a5a162a56d6a2858480e8c1dbac73a67"
+          }
+        },
+        {
+          "client_id": "392007311118-taigiqd1c537jo740vbm9n1efqr3hogo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVJMfWl-pyvzRidw-3b87Ql-uVPU5R5Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392007311118-taigiqd1c537jo740vbm9n1efqr3hogo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
