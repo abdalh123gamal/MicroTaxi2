@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,8 +23,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import dmax.dialog.SpotsDialog;
+
 public class SignInRider extends AppCompatActivity {
    private FirebaseAuth auth;
+   ProgressDialog pd;
    ConstraintLayout sign_in_rider;
    ProgressBar progressBar;
 
@@ -61,6 +66,11 @@ public class SignInRider extends AppCompatActivity {
 
 
     public  void loginRider() {
+
+        final AlertDialog dialog = new SpotsDialog(SignInRider.this,"جاري تسجيل الدخول ..",R.style.CustomDialog);
+
+        dialog.show();
+
         auth=FirebaseAuth.getInstance();
 
         String email =ed_email.getText().toString();
@@ -68,16 +78,20 @@ public class SignInRider extends AppCompatActivity {
 
 
         if (!email.isEmpty()&&!password.isEmpty()){
+
+           /*pd.show();*/
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        startActivity(new Intent(getApplication(), MainActivity.class));
+                        startActivity(new Intent(getApplication(), RiderHome.class));
                         finish();
 
                     }
 
                     else {
+                        dialog.dismiss();
+                     //   pd.dismiss();
                         Snackbar.make(sign_in_rider,"بريد إلكتروني غير صحيح أو كلمة سر خاطئة",Snackbar.LENGTH_LONG).show();
 
 

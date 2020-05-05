@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.WrapperListAdapter;
 
 import com.abdalh.microtaxi.R;
 import com.abdalh.microtaxi.model.Driver;
@@ -22,13 +25,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import dmax.dialog.SpotsDialog;
+
 public class RegisterDriver extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth auth;
+    ProgressDialog pd;
     DatabaseReference databaseReference;
 
     EditText ed_email,ed_name,ed_phone,ed_password,ed_car_type;
-    ProgressBar progressBar;
+
     Button btn_register;
     ConstraintLayout register_driver;
 
@@ -44,7 +50,6 @@ public class RegisterDriver extends AppCompatActivity {
         ed_phone=findViewById(R.id.register_driver_ed_phone);
         ed_password=findViewById(R.id.register_driver_ed_password);
         ed_car_type=findViewById(R.id.register_driver_ed_car_type);
-        progressBar=findViewById(R.id.register_driver_progress_bar);
         btn_register=findViewById(R.id.register_driver_btn_register);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +62,13 @@ public class RegisterDriver extends AppCompatActivity {
     }
     public void registerDriver(){
 
+        final AlertDialog dialog = new SpotsDialog(RegisterDriver.this,"جاري إنشاء حساب سائق ..",R.style.CustomDialog);
+
+        dialog.show();
+
         auth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference("Drivers");
+        databaseReference=firebaseDatabase.getReference().child("Users").child("Driver");
 
         final String name =ed_name.getText().toString();
         final String email =ed_email.getText().toString();
@@ -67,7 +76,7 @@ public class RegisterDriver extends AppCompatActivity {
         final String password =ed_password.getText().toString();
         final String car_type =ed_car_type.getText().toString();
         if(!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty()&&!password.isEmpty()&&!car_type.isEmpty()){
-            progressBar.setVisibility(View.VISIBLE);
+
 
 
             auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegisterDriver.this, new OnCompleteListener<AuthResult>() {
@@ -85,16 +94,17 @@ public class RegisterDriver extends AppCompatActivity {
 
                         databaseReference.child(id).setValue(driver);
 
-                        startActivity(new Intent(getApplication(), MainActivity.class));
+                        startActivity(new Intent(getApplication(), DriverHome.class));
                         finish();
 
 
 
                     }
                     else {
+                        dialog.dismiss();
                         Snackbar.make(register_driver,"بريد إلكتروني غير صحيح أو كلمة سر ضعيفة",Snackbar.LENGTH_LONG).show();
 
-                        progressBar.setVisibility(View.GONE);
+
 
 
                     }

@@ -15,6 +15,7 @@ import com.abdalh.microtaxi.R;
 import com.abdalh.microtaxi.ui.AboutMicroTaxi;
 import com.abdalh.microtaxi.ui.ActivitySelectType;
 import com.abdalh.microtaxi.ui.FeedBack;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
+
          drawerLayout=findViewById(R.id.drawer);
 
          Snackbar.make(drawerLayout,R.string.main_toast_the_application_is_now_operational,Snackbar.LENGTH_SHORT).show();
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                        startActivity(new Intent(getApplication(), AboutMicroTaxi.class));
                        return true;
                     case R.id.drawer_menu_setting:
-                        Toast.makeText(getApplication(),"الاعدادات",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), SettingProfile.class));
                         return  true;
                     case R.id.drawer_menu_feedback:
                         startActivity(new Intent(getApplication(), FeedBack.class));
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setToolbar(){
         drawerLayout=findViewById(R.id.drawer);
-        toolbar=findViewById(R.id.toolbar);
+        toolbar=findViewById(R.id.home_activity_toolbar);
         setSupportActionBar(toolbar);
         drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);

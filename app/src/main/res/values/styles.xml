@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
-
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
@@ -21,6 +21,18 @@
     </style>
 
 
+    <style name="CustomDialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:fontFamily">@font/elmessiri_medium</item>
+
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">انتظر قليلا ..</item>
+        <item name="DialogSpotColor">@android:color/holo_orange_dark</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

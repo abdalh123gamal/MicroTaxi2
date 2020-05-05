@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 29
@@ -10,9 +11,20 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "google_maps_key",
+                (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "AIzaSyCI7ZbHCIyABQbfc8WxuRs5BuI7JgIR2RE")
+    }
+    signingConfigs {
+        release {
+            storeFile file("F:/key/micro_taxi.jks")
+            storePassword '123456'
+            keyAlias 'taxi'
+            keyPassword '123456'
+        }
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -32,9 +44,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    implementation 'androidx.navigation:navigation-ui:2.2.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
     // sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //Picasso for img
@@ -45,7 +61,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.1'
     //Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:19.3.0'
+    //Firebase Crash test
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    //Geo Fire for Android — Realtime location queries with Firebase
+    implementation 'com.firebase:geofire-android:3.0.0'
 
+    //Spots progress dialog
+    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+
+
+    //Material Animated Switch
+    implementation 'com.github.glomadrian:MaterialAnimatedSwitch:1.1@aar'
+
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 
 }

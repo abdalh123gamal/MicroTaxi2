@@ -4,11 +4,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {url 'https://maven.fabric.io/public'}
         
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'io.fabric.tools:gradle:1.31.2'
+
 
     }
 }
@@ -17,10 +20,19 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'https://jitpack.io' }
+        maven {url 'https://maven.fabric.io/public'}
+        maven {url 'http://dl.bintray.com/glomadrian/maven'}
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package com.abdalh.microtaxi.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,32 +26,39 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         Toast.makeText(getApplicationContext(),R.string.main_toast_application_in_progress,Toast.LENGTH_LONG).show();
 
-        progressBar=findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar=findViewById(R.id.splash_progress_bar);
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                auth=FirebaseAuth.getInstance();
-                FirebaseUser firebaseUser=auth.getCurrentUser();
-                if(firebaseUser==null){
+//                auth=FirebaseAuth.getInstance();
+//                FirebaseUser firebaseUser=auth.getCurrentUser();
+//                if(firebaseUser==null){
                     Intent intent=new Intent(getApplication(), ActivitySelectType.class);
                     startActivity(intent);
                     finish();
-                }
-                else {
-
-                    Intent intent=new Intent(getApplication(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+//                }
+//
+//                else {
+//
+//                    Intent intent=new Intent(getApplication(),DriverHome.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
 
 
 
 
 
             }
-        },3000);
+        },2000);
+
     }
+
+
+
 }

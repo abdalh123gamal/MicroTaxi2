@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,13 +24,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import dmax.dialog.SpotsDialog;
+
 public class RegisterRider extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth auth;
     DatabaseReference databaseReference;
-
+    ProgressDialog pd;
     EditText ed_email,ed_name,ed_phone,ed_password;
-    ProgressBar progressBar;
     Button btn_register;
     ConstraintLayout register_rider;
 
@@ -43,7 +46,6 @@ public class RegisterRider extends AppCompatActivity {
         ed_email=findViewById(R.id.register_rider_ed_email);
         ed_phone=findViewById(R.id.register_rider_ed_phone);
         ed_password=findViewById(R.id.register_rider_ed_password);
-        progressBar=findViewById(R.id.register_rider_progress_bar);
         btn_register=findViewById(R.id.register_rider_btn_register);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -61,17 +63,22 @@ public class RegisterRider extends AppCompatActivity {
             });
         }
         public void registerRider(){
+//           pd = new ProgressDialog(RegisterRider.this);
+//            pd.setMessage("جاري إنشاء حساب");
+            final AlertDialog dialog = new SpotsDialog(RegisterRider.this,"جاري إنشاء حساب راكب ..",R.style.CustomDialog);
+
+            dialog.show();
 
             auth=FirebaseAuth.getInstance();
             firebaseDatabase=FirebaseDatabase.getInstance();
-            databaseReference=firebaseDatabase.getReference("Users");
+            databaseReference=firebaseDatabase.getReference().child("Users").child("Rider");
 
             final String name =ed_name.getText().toString();
             final String email =ed_email.getText().toString();
             final String phone =ed_phone.getText().toString();
             final String password =ed_password.getText().toString();
             if(!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty()&&!password.isEmpty()){
-                progressBar.setVisibility(View.VISIBLE);
+
 
 
 
@@ -89,16 +96,16 @@ public class RegisterRider extends AppCompatActivity {
 
                             databaseReference.child(id).setValue(rider);
 
-                            startActivity(new Intent(getApplication(), MainActivity.class));
+                            startActivity(new Intent(getApplication(), RiderHome.class));
                             finish();
 
 
 
                         }
                         else {
+                            dialog.dismiss();
                             Snackbar.make(register_rider,"بريد إلكتروني غير صحيح أو كلمة سر ضعيفة",Snackbar.LENGTH_LONG).show();
 
-                            progressBar.setVisibility(View.GONE);
 
 
                         }
