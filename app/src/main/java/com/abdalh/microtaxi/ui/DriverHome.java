@@ -23,6 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -88,6 +89,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
     Button  btn_logout;
 
     private String customerId ="";
+    private boolean isLoginOut=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,8 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
                         startActivity(new Intent(getApplication(), FeedBack.class));
                         return  true;
                     case R.id.drawer_menu_logout:
+                        isLoginOut=true;
+                        disconnectDriver();
                         Toast.makeText(getApplication(),"جاري تسجيل الخروج",Toast.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), ActivitySelectType.class));
@@ -227,7 +231,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
 
                     LatLng driverLngLat=new LatLng(locationLat,locationLng);
 
-                    pickupMarker= mMap.addMarker(new MarkerOptions().position(driverLngLat).title("جالك طلب يا شريكي"));
+                    pickupMarker= mMap.addMarker(new MarkerOptions().position(driverLngLat).title("جالك طلب يا شريكي").icon(BitmapDescriptorFactory.fromResource(R.drawable.attachment)));
                 }
 
             }
@@ -263,13 +267,13 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    protected void onStop() {
-        super.onStop();
+
+
+    private void disconnectDriver() {
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        auth=FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser=auth.getCurrentUser();
-        if(firebaseUser!=null) {
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        if (firebaseUser != null) {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("driversAvailable");
 
@@ -277,6 +281,17 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
             geoFire.removeLocation(userId);
         }
     }
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        if(!isLoginOut)
+        {
+            disconnectDriver();
+        }
+
+        }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

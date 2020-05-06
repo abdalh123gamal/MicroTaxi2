@@ -26,6 +26,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -149,7 +151,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                   geoFire.setLocation(userId,new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
 
                   pickupLocation=new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-                  pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("pickup here"));
+                  pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("pickup here").icon(BitmapDescriptorFactory.fromResource(R.drawable.attachment)));
 
                   btn_request.setText("جاري طلب ميكروباص ..");
 
@@ -343,7 +345,8 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                     }
 
-                    MDriverMarker=mMap.addMarker(new MarkerOptions().position(driverLngLat).title("Driver"));
+
+                     MDriverMarker=mMap.addMarker(new MarkerOptions().position(driverLngLat).title("Driver").icon(BitmapDescriptorFactory.fromResource(R.drawable.transportt)));
 
                 }
 

@@ -37,13 +37,7 @@
 
         <activity
             android:name=".ui.Welcome"
-            android:label="@string/title_activity_welcome" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_welcome" />
         <activity android:name=".ui.RegisterDriver" />
         <activity android:name=".ui.RegisterRider" />
         <activity android:name=".ui.SignInDriver" />
