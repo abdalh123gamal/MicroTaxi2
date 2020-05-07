@@ -285,10 +285,10 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
     protected void onStop(){
         super.onStop();
 
-        if(!isLoginOut)
-        {
-            disconnectDriver();
-        }
+//        if(!isLoginOut)
+//        {
+//            disconnectDriver();
+//        }
 
         }
 

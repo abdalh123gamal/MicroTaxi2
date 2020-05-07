@@ -117,8 +117,9 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
               if(requestBol){
                   requestBol=false;
                   geoQuery.removeAllListeners();
-                  driverLocationRef.removeEventListener(driverLocationRefListener);
-
+                  if(driverLocationRefListener != null){
+                      driverLocationRef.removeEventListener(driverLocationRefListener);
+                  }
                   if(driverFoundID!=null){
                       DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
                       driverRef.setValue(true);
@@ -281,9 +282,13 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
             public void onGeoQueryReady() {
 
                 if(!driverFound)
-                {  radius++;
-
-                    getClosestDriver();
+                {
+                    radius++;
+                    if(radius != 5){
+                        getClosestDriver();
+                    }else {
+                        Toast.makeText(RiderHome.this, "لا يوجد سائقين متاحين الان حاول في وقت اخر", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
@@ -298,7 +303,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
     private DatabaseReference driverLocationRef ;
     private ValueEventListener driverLocationRefListener;
     private void getDriverLocation() {
-        driverLocationRef=FirebaseDatabase.getInstance().getReference().child("driversWorking").child(driverFoundID).child("1");
+        driverLocationRef=FirebaseDatabase.getInstance().getReference().child("driversAvailable").child(driverFoundID).child("l");
         driverLocationRefListener = driverLocationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -310,7 +315,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                     if(map.get(0)!=null)
                     {
-                    locationLat=Double.parseDouble(map.get(0).toString());
+                       locationLat=Double.parseDouble(map.get(0).toString());
                     }
 
                     if(map.get(1)!=null)
@@ -348,6 +353,8 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                      MDriverMarker=mMap.addMarker(new MarkerOptions().position(driverLngLat).title("Driver").icon(BitmapDescriptorFactory.fromResource(R.drawable.transportt)));
 
+                }else {
+                    Log.i("Driver" , "Not available");
                 }
 
             }
