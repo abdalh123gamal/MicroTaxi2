@@ -330,8 +330,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
             GeoFire geoFireAvailable=new GeoFire(refAvailable);
             GeoFire geoFireWorking=new GeoFire(refWorking);
 
-            geoFireAvailable.setLocation(userId,new GeoLocation(location.getLatitude(),location.getLongitude()));
-            geoFireWorking.setLocation(userId,new GeoLocation(location.getLatitude(),location.getLongitude()));
+          
 
             switch (customerId) {
                 case "":
