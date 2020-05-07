@@ -16,7 +16,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("F:/key/micro_taxi.jks")
+            storeFile file("micro_taxi.jks")
             storePassword '123456'
             keyAlias 'taxi'
             keyPassword '123456'
@@ -26,6 +26,7 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

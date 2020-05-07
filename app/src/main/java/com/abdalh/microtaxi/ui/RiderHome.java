@@ -258,7 +258,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                     HashMap map=new HashMap();
                     map.put("customerRideId",riderID);
-                    driverRef.updateChildren(map);
+                    driverRef.child("customerRideId").setValue(riderID);
 
                     getDriverLocation();
                     btn_request.setText("أبحث عن موقع سائق");
@@ -298,7 +298,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
     private DatabaseReference driverLocationRef ;
     private ValueEventListener driverLocationRefListener;
     private void getDriverLocation() {
-        driverLocationRef=FirebaseDatabase.getInstance().getReference().child("driversWorking").child(driverFoundID).child("1");
+        driverLocationRef=FirebaseDatabase.getInstance().getReference().child("driversWorking").child(driverFoundID).child("l");
         driverLocationRefListener = driverLocationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
