@@ -86,7 +86,7 @@ public class RegisterRider extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            String id=databaseReference.push().getKey();
+                            String id=auth.getCurrentUser().getUid();
                             Rider rider=new Rider();
                             rider.setName(name);
                             rider.setEmail(email);

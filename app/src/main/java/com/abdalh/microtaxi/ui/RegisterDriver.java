@@ -98,7 +98,8 @@ public class RegisterDriver extends AppCompatActivity {
 
                     } else {
                         dialog.dismiss();
-                        Snackbar.make(register_driver, "بريد إلكتروني غير صحيح أو كلمة سر ضعيفة", Snackbar.LENGTH_LONG).show();
+                        Log.i("RegisterError" , task.getException().getMessage());
+                        Snackbar.make(register_driver, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 }
 

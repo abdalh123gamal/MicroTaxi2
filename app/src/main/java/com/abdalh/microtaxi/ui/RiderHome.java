@@ -117,8 +117,9 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
               if(requestBol){
                   requestBol=false;
                   geoQuery.removeAllListeners();
-                  driverLocationRef.removeEventListener(driverLocationRefListener);
-
+                  if(driverLocationRefListener != null){
+                      driverLocationRef.removeEventListener(driverLocationRefListener);
+                  }
                   if(driverFoundID!=null){
                       DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
                       driverRef.setValue(true);
@@ -142,8 +143,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
 
 
-              }
-              else{
+              } else{
                   requestBol=true;
                   String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
                   DatabaseReference ref=FirebaseDatabase.getInstance().getReference("RiderRequest");
@@ -281,9 +281,13 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
             public void onGeoQueryReady() {
 
                 if(!driverFound)
-                {  radius++;
-
-                    getClosestDriver();
+                {
+                    if(radius != 5){
+                        radius++;
+                        getClosestDriver();
+                    }else {
+                        Toast.makeText(RiderHome.this, "نأسف لا يوجد سائقين متاحين الان حاول في وقت اخر", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
