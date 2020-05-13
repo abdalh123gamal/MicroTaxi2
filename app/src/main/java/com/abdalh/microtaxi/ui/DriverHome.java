@@ -147,15 +147,14 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
     }
     private void getAssignedRider() {
         String driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.i("Driver_id", driverId);
-        DatabaseReference assignedRiderRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(driverId).child("customerRideId");
+        DatabaseReference assignedRiderRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverId).child("customerRideId");
         assignedRiderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     customerId = dataSnapshot.getValue().toString();
-                    Log.i("Customer_id", customerId);
                     getAssignedRiderPickupLocation();
+
                 } else {
                     customerId = "";
                     if (pickupMarker != null) {
@@ -164,7 +163,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
                     }
                 }
                 if (assignedRiderPickupLocationRef != null) {
-                    assignedRiderPickupLocationRef.removeEventListener(assignedRiderRefListener);
+                    assignedRiderPickupLocationRef.removeEventListener(assignedRiderRefPickupLocationListener);
                 }
             }
             @Override
@@ -175,13 +174,14 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
     }
     Marker pickupMarker;
     private DatabaseReference assignedRiderPickupLocationRef;
-    private ValueEventListener assignedRiderRefListener;
+    private ValueEventListener assignedRiderRefPickupLocationListener;
     private void getAssignedRiderPickupLocation() {
-        assignedRiderPickupLocationRef = FirebaseDatabase.getInstance().getReference().child("Users").child("RiderRequest").child(customerId).child("l");
-        assignedRiderRefListener = assignedRiderPickupLocationRef.addValueEventListener(new ValueEventListener() {
+
+        assignedRiderPickupLocationRef = FirebaseDatabase.getInstance().getReference().child("RiderRequest").child(customerId).child("l");
+        assignedRiderRefPickupLocationListener = assignedRiderPickupLocationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists() && !customerId.equals("")) {
+                if (dataSnapshot.exists() &&!customerId.equals("")) {
                     List<Object> map = (List<Object>) dataSnapshot.getValue();
                     double locationLat = 0;
                     double locationLng = 0;
@@ -192,7 +192,10 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
                         locationLng = Double.parseDouble(map.get(1).toString());
                     }
                     LatLng driverLngLat = new LatLng(locationLat, locationLng);
-                    pickupMarker = mMap.addMarker(new MarkerOptions().position(driverLngLat).title("جالك طلب يا شريكي").icon(BitmapDescriptorFactory.fromResource(R.drawable.attachment)));
+                    pickupMarker = mMap.addMarker(new MarkerOptions()
+                            .position(driverLngLat)
+                            .title("طلب مقعد")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin_location)));
                 }
 
             }
@@ -238,6 +241,13 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
         }
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -261,7 +271,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
             mLastLocation = location;
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DatabaseReference refAvailable = FirebaseDatabase.getInstance().getReference("driversAvailable");
             DatabaseReference refWorking = FirebaseDatabase.getInstance().getReference("driversWorking");
@@ -275,6 +285,7 @@ public class DriverHome extends AppCompatActivity implements OnMapReadyCallback,
                 default:
                     geoFireAvailable.removeLocation(userId);
                     geoFireWorking.setLocation(userId, new GeoLocation(location.getLatitude(), location.getLongitude()));
+                    getAssignedRiderPickupLocation();
                     break;
 
             }

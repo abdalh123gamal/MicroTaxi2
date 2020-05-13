@@ -1,10 +1,12 @@
 package com.abdalh.microtaxi.ui;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +58,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.HashMap;
 import java.util.List;
+
+import dmax.dialog.SpotsDialog;
 
 public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,
@@ -121,8 +125,8 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                       driverLocationRef.removeEventListener(driverLocationRefListener);
                   }
                   if(driverFoundID!=null){
-                      DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
-                      driverRef.setValue(true);
+                      DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID).child("customerRideId");
+                      driverRef.removeValue();
                       driverFoundID=null;
 
                   }
@@ -138,7 +142,11 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                   if(pickupMarker!=null){
                       pickupMarker.remove();
                   }
-                  btn_request.setText("طلب سسارة");
+                  if(MDriverMarker!=null)
+                  {
+                      MDriverMarker.remove();
+                  }
+                  btn_request.setText("طلب ميكروباص ");
 
 
 
@@ -151,9 +159,9 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                   geoFire.setLocation(userId,new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
 
                   pickupLocation=new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-                  pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("pickup here").icon(BitmapDescriptorFactory.fromResource(R.drawable.attachment)));
+                  pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("مكانك").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin_location)));
 
-                  btn_request.setText("جاري طلب ميكروباص ..");
+                  btn_request.setText("جاري البحث...");
 
                   getClosestDriver();
               }
@@ -218,7 +226,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
                         intent.putExtra(Intent.EXTRA_SUBJECT, "Micro Taxi");
-                        intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app! https://MicroTaxi.Met.com/");
+                        intent.putExtra(Intent.EXTRA_TEXT, " https://MicroTaxi.Met.com/ مرحبًا ، قم بتنزيل هذا التطبيق ! ");
                         startActivity(Intent.createChooser(intent, "choose one"));
 
                         return true;
@@ -257,11 +265,20 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                     String riderID=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                     HashMap map=new HashMap();
-                    map.put("customerRideId",riderID);
+                    map.put("customerRideId",riderID);;
                     driverRef.child("customerRideId").setValue(riderID);
+                    final AlertDialog dialog = new SpotsDialog(RiderHome.this,"جاري البحث علي أقرب سائق",R.style.CustomDialog);
 
+                    dialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+
+                        }
+                    },2000);
                     getDriverLocation();
-                    btn_request.setText("أبحث عن موقع سائق");
+                    btn_request.setText("جاري البحث علي أقرب سائق");
                 }
 
 
@@ -286,7 +303,21 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                         radius++;
                         getClosestDriver();
                     }else {
-                        Toast.makeText(RiderHome.this, "نأسف لا يوجد سائقين متاحين الان حاول في وقت اخر", Toast.LENGTH_SHORT).show();
+                        btn_request.setText("الغاء البحث ");
+
+                        final AlertDialog dialog = new SpotsDialog(RiderHome.this,"  نأسف لا يوجد سائقين متاحين الان",R.style.CustomDialog);
+
+
+                        dialog.show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+
+                            }
+                        },3000);
+
+//                        Toast.makeText(RiderHome.this, " نأسف لا يوجد سائقين متاحين الان حاول في وقت اخر", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -310,7 +341,6 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                     List<Object> map=(List<Object>) dataSnapshot.getValue();
                     double locationLat = 0;
                     double locationLng =0;
-                    btn_request.setText("Driver Found");
 
                     if(map.get(0)!=null)
                     {
@@ -339,18 +369,17 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                     float distance =loc1.distanceTo(loc2);
                     if (distance<100){
-                        btn_request.setText("Driver is here ");
+                        btn_request.setText("السائق بالقرب منك ");
                     }
                     else{
-                        btn_request.setText("Driver Found :" +distance);
+                        btn_request.setText("لقينا سواق : "+distance);
 
                     }
                     {
 
                     }
 
-
-                     MDriverMarker=mMap.addMarker(new MarkerOptions().position(driverLngLat).title("Driver").icon(BitmapDescriptorFactory.fromResource(R.drawable.transportt)));
+                     MDriverMarker=mMap.addMarker(new MarkerOptions().position(driverLngLat).title("ميكروباص").icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_bus)));
 
                 }
 
@@ -424,7 +453,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
 
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
 
 
