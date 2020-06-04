@@ -7,23 +7,27 @@
     tools:context=".ui.RiderHome">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_7sdp"
+        android:background="@drawable/custome_toolbar"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="visible">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/rider_home_activity_toolbar"
-            android:layout_width="match_parent"
+            android:id="@+id/toolbar_rider_home"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        </androidx.appcompat.widget.Toolbar>
-
+            android:background="@drawable/custome_toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_rider_home" />
 
+    <include
+        layout="@layout/content_rider_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,28 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/content_driver"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_driver_home">
 
-
-    <Button
-        android:id="@+id/driver_home_btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/elmessiri_medium"
-        android:text="تسجيل خروج"
-        app:layout_constraintBottom_toBottomOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/map" />
 
     <fragment
-        android:id="@+id/map"
+        android:id="@+id/map_driver"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </fragment>
+
+    <Switch
+        android:id="@+id/driver_home_switch_run"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/bottom_sheet_background"
+        android:capitalize="characters"
+        android:fontFamily="@font/elmessiri_medium"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="تشغيل الموقع لإستقبال الطلبات"
+        android:textAllCaps="false"
+        android:textColor="@color/md_orange_900"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map_driver"
+        tools:checked="false" />
+
+    <ImageView
+        android:id="@+id/driver_home_iv_info_rider_show_bottom_sheet"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="@+id/map_driver"
+        app:layout_constraintEnd_toStartOf="@+id/map_driver"
+        app:layout_constraintStart_toEndOf="@+id/map_driver"
+        app:srcCompat="@drawable/ic_arrow_up_info" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

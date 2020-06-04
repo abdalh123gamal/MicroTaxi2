@@ -15,6 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/md_orange_200"
         app:cardCornerRadius="@dimen/_7sdp"
         app:cardElevation="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView4"
@@ -50,8 +51,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
-                android:text="@string/about_tv_about_sub_micro_taxi"
+                android:padding="@dimen/_4sdp"
 
+                android:text="@string/about_tv_about_sub_micro_taxi"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -62,6 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/md_orange_200"
         app:cardCornerRadius="@dimen/_7sdp"
         app:cardElevation="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
@@ -82,6 +85,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_goals"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp" />
@@ -92,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_goals_sub"
                 android:textSize="18sp" />
 
@@ -104,8 +109,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/md_orange_200"
         app:cardCornerRadius="@dimen/_7sdp"
         app:cardElevation="@dimen/_2sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -132,6 +139,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_customer_attention_sub"
                 android:textSize="18sp" />
 
@@ -144,6 +152,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/md_orange_200"
         app:cardCornerRadius="@dimen/_7sdp"
         app:cardElevation="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
@@ -163,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_our_mission"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp" />
@@ -173,6 +183,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_our_mission_sub"
                 android:textSize="18sp" />
 
@@ -185,6 +196,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/md_orange_200"
         app:cardCornerRadius="@dimen/_7sdp"
         app:cardElevation="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
@@ -204,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_our_vision"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp" />
@@ -214,6 +227,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/elmessiri_bold"
                 android:gravity="center"
+                android:padding="@dimen/_4sdp"
                 android:text="@string/about_micro_tv_our_vision_sub"
                 android:textSize="18sp" />
 

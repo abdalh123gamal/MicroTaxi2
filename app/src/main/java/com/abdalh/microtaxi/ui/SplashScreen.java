@@ -2,19 +2,14 @@ package com.abdalh.microtaxi.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.abdalh.microtaxi.R;
-import com.abdalh.microtaxi.ui.ActivitySelectType;
-import com.abdalh.microtaxi.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
     FirebaseAuth auth;

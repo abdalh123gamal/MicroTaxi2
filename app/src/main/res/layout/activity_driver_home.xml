@@ -15,14 +15,14 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/driver_home_nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_driver_home"
         app:itemIconTint="@color/colorAccent"
         app:itemTextAppearance="@style/RobotoTextViewStyle"
         app:itemTextColor="@color/colorAccent"
-        app:headerLayout="@layout/nav_header_driver_home"
         app:menu="@menu/activity_driver_home_drawer" />
 
 

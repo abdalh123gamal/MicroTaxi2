@@ -2,19 +2,32 @@ package com.abdalh.microtaxi.ui;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abdalh.microtaxi.R;
+import com.abdalh.microtaxi.model.Rider;
+import com.bumptech.glide.Glide;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
@@ -28,12 +41,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,17 +61,21 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 
@@ -88,28 +106,116 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
     private LatLng pickupLocation;
     private Marker pickupMarker;
 
-    private FirebaseAuth auth ;
+    private String mName;
+    private String mEmail;
+    private String mProfileImageUrl;
 
     private MaterialAnimatedSwitch location_switch;
-    private SupportMapFragment mapFragment;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
 
+    private  BottomSheetDialog bottomSheetDialog;
+    private ImageView mDriverProfileImage;
+    private TextView mDriverName,mDriverPhone,mDriverCar;
+
+    private Spinner spLine;
+    CardView DialogSearch;
+    ConstraintLayout layoutContainer;
+    String destination ;
+    private LocationManager manager;
     private Button btn_request;
 
     boolean requestBol= false;
+    private int number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_home);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
 
         drawerLayout=findViewById(R.id.drawer_layout_rider_home);
         navigationView=findViewById(R.id.rider_home_nav_view);
+        layoutContainer=findViewById(R.id.rider_home_layout_container);
+        DialogSearch=findViewById(R.id.rider_home_view_search_and_selected_Dialog);
+        //check the Gbs is enable or not
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+
+
+
+        setToolbar();
+        updateNavHeaderInfo();
+
+        DialogSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutContainer.setVisibility(View.VISIBLE);
+
+            }
+        });
+        ImageView show_bottom_sheet=findViewById(R.id.rider_home_iv_info_driver_show_bottom_sheet);
+        show_bottom_sheet.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 bottomSheetDialog.show();
+             }
+         });
+
+        bottomSheetDialog=new BottomSheetDialog(RiderHome.this,R.style.BottomSheetDialogTheme);
+        View bottomSheetView= LayoutInflater.from(getApplicationContext())
+                .inflate(R.layout.layout_bottom_sheet_driver, (LinearLayout)findViewById(R.id.bottom_sheet_driver_container));
+        bottomSheetDialog.setContentView(bottomSheetView);
+        mDriverProfileImage = bottomSheetView.findViewById(R.id.bottom_sheet_driver_container_iv_profile);
+        mDriverName = bottomSheetView.findViewById(R.id.bottom_sheet_driver_container_tv_name);
+        mDriverPhone = bottomSheetView.findViewById(R.id.bottom_sheet_driver_container_tv_phone);
+        mDriverCar = bottomSheetView.findViewById(R.id.bottom_sheet_driver_container_tv_car_type);
+
+        // Array of choices
+        String lines [] =getResources().getStringArray(R.array.lines);
+        // Selection of the spinner
+        final Spinner spinner =findViewById(R.id.rider_home_sp_lines);
+        // Application of the Array to the Spinner
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, lines);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String item_position = String.valueOf(position);
+                destination = spinner.getSelectedItem().toString();
+                int positionInt = Integer.valueOf(item_position);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+//
+//                listener=mLineDatabase.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot lineSnapshot: dataSnapshot.getChildren()) {
+//                            spinnerListLines.add(lineSnapshot.getValue().toString());
+//
+//                        }
+//                        adapter.notifyDataSetChanged();
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//                        Toast.makeText(RiderHome.this,"aaa",Toast.LENGTH_LONG).show();
+//
+//                    }
+//                });
+
 
 
         btn_request=findViewById(R.id.rider_home_btn_request);
@@ -117,68 +223,77 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
         btn_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-              if(requestBol){
-                  requestBol=false;
-                  geoQuery.removeAllListeners();
-                  if(driverLocationRefListener != null){
-                      driverLocationRef.removeEventListener(driverLocationRefListener);
-                  }
-                  if(driverFoundID!=null){
-                      DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID).child("customerRideId");
-                      driverRef.removeValue();
-                      driverFoundID=null;
+                    if(requestBol){
+                        requestBol=false;
+                        geoQuery.removeAllListeners();
+                        if(driverLocationRefListener != null){
+                            driverLocationRef.removeEventListener(driverLocationRefListener);
+                        }
+                        if(driverFoundID!=null){
+                            DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID).child("customerRequest");
+                            driverRef.removeValue();
+                            driverFoundID=null;
 
-                  }
-                  driverFound=false;
-                  radius=1;
-
-
-                  String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                  DatabaseReference ref=FirebaseDatabase.getInstance().getReference("RiderRequest");
-                  GeoFire geoFire=new GeoFire(ref);
-                  geoFire.removeLocation(userId);
-
-                  if(pickupMarker!=null){
-                      pickupMarker.remove();
-                  }
-                  if(MDriverMarker!=null)
-                  {
-                      MDriverMarker.remove();
-                  }
-                  btn_request.setText("طلب ميكروباص ");
+                        }
+                        driverFound=false;
+                        radius=1;
 
 
+                        String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("RiderRequest");
+                        GeoFire geoFire=new GeoFire(ref);
+                        geoFire.removeLocation(userId);
+
+                        if(pickupMarker!=null){
+                            pickupMarker.remove();
+                        }
+                        if(MDriverMarker!=null)
+                        {
+                            MDriverMarker.remove();
+                        }
+                        btn_request.setText("بحث");
+
+                        mDriverProfileImage.setImageResource(R.drawable.ic_driver_svg);
+                        mDriverName.setText("");
+                        mDriverPhone.setText("");
+                        mDriverCar.setText("");
 
 
-              } else{
-                  requestBol=true;
-                  String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                  DatabaseReference ref=FirebaseDatabase.getInstance().getReference("RiderRequest");
-                  GeoFire geoFire=new GeoFire(ref);
-                  geoFire.setLocation(userId,new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
+                    } else{
+                        requestBol=true;
+                        String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("RiderRequest");
+                        GeoFire geoFire=new GeoFire(ref);
+                        geoFire.setLocation(userId,new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
 
-                  pickupLocation=new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-                  pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("مكانك").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin_location)));
+                        pickupLocation=new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+                        pickupMarker=mMap.addMarker(new MarkerOptions().position(pickupLocation).title("مكانك").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin_location)));
 
-                  btn_request.setText("جاري البحث...");
+                        btn_request.setText("جاري البحث...");
 
-                  getClosestDriver();
-              }
+                        getClosestDriver();
+                    }
+                }
+                else {
+                    buildAlertMessageNoGps();
+                }
+
 
             }
 
-           
+
         });
 
         
 
 
-        setToolbar();
+
 
         try {
             supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map_home);
+                    .findFragmentById(R.id.map_rider);
             supportMapFragment.getMapAsync(this);
         }catch (Exception e){
             Log.i("MapException" , e.getMessage());
@@ -210,7 +325,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                         startActivity(new Intent(getApplication(), AboutMicroTaxi.class));
                         return true;
                     case R.id.drawer_menu_setting:
-                        startActivity(new Intent(getApplicationContext(), SettingProfile.class));
+                        startActivity(new Intent(getApplicationContext(), SettingRiderInfo.class));
                         return  true;
                     case R.id.drawer_menu_feedback:
                         startActivity(new Intent(getApplication(), FeedBack.class));
@@ -237,9 +352,63 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
         });
 
     }
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("يعني أنت داخل تطبيق عشان تحدد ال location بتاعك واحنا مكرمين هنحددلك الطريق اللي يوصلك لميكروباص يوصلك مكانك انت واللي معاك في المكان اللي انت عاوزه وحضرتك مش مشغل ال Gbs  ؟")
+                .setCancelable(false)
+                .setPositiveButton("ادخل الاعدادات ياعم ومتقرفناش معاك", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("اغلاق ومشفش وشك في التطبيق", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void updateNavHeaderInfo(){
+        navigationView=findViewById(R.id.rider_home_nav_view);
+        View headerView=navigationView.getHeaderView(0);
+        final ImageView navImage=headerView.findViewById(R.id.header_rider_iv_profile);
+        final TextView navUserName=headerView.findViewById(R.id.header_rider_tv_name);
+        final TextView navUserEmail=headerView.findViewById(R.id.header_rider_tv_email);
+
+         String userID=FirebaseAuth.getInstance().getCurrentUser().getUid();
+         DatabaseReference mRiderDatabase=FirebaseDatabase.getInstance().getReference().child("Users").child("Rider").child(userID);
+         mRiderDatabase.addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
+                     Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                     if (map.get("name") != null) {
+                         mName = map.get("name").toString();
+                         navUserName.setText(mName);
+                     }
+                     if (map.get("email") != null) {
+                         mEmail = map.get("email").toString();
+                         navUserEmail.setText(mEmail);
+                     }
+                     if (map.get("profileImageUri") != null) {
+                         mProfileImageUrl = map.get("profileImageUri").toString();
+                         navImage.setImageURI(Uri.parse(mProfileImageUrl));
+                         Glide.with(getApplicationContext()).load(mProfileImageUrl).into(navImage);
+                     }
+                 }
+             }
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         });
+
+    }
 
     // البحث عن أقرب سائق للراكب
-
     private int radius =-1;
     private boolean driverFound=false;
     GeoQuery geoQuery;
@@ -260,15 +429,15 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                 {
                     driverFound=true;
                     driverFoundID=key;
-
-                    DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
+                    DatabaseReference driverRef=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID).child("customerRequest");
                     String riderID=FirebaseAuth.getInstance().getCurrentUser().getUid();
-
                     HashMap map=new HashMap();
-                    map.put("customerRideId",riderID);;
+                    map.put("customerRideId",riderID);
+                    map.put("destination",destination);
                     driverRef.child("customerRideId").setValue(riderID);
-                    final AlertDialog dialog = new SpotsDialog(RiderHome.this,"جاري البحث علي أقرب سائق",R.style.CustomDialog);
+                    driverRef.child("destination").setValue(destination);
 
+                    final AlertDialog dialog = new SpotsDialog(RiderHome.this,"جاري البحث علي سائق قريب",R.style.CustomDialog);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -277,8 +446,10 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
                         }
                     },2000);
+
                     getDriverLocation();
-                    btn_request.setText("جاري البحث علي أقرب سائق");
+                    getAssignedDriverInfo();
+
                 }
 
 
@@ -305,7 +476,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                     }else {
                         btn_request.setText("الغاء البحث ");
 
-                        final AlertDialog dialog = new SpotsDialog(RiderHome.this,"  نأسف لا يوجد سائقين متاحين الان",R.style.CustomDialog);
+                        final AlertDialog dialog = new SpotsDialog(RiderHome.this," نأسف لا يوجد سائقين متاحين الان",R.style.CustomDialog);
 
 
                         dialog.show();
@@ -315,12 +486,9 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                                 dialog.dismiss();
 
                             }
-                        },3000);
-
-//                        Toast.makeText(RiderHome.this, " نأسف لا يوجد سائقين متاحين الان حاول في وقت اخر", Toast.LENGTH_SHORT).show();
+                        },2000);
                     }
                 }
-
             }
 
             @Override
@@ -329,6 +497,9 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
             }
         });
     }
+
+    // عرض مكان السائق علي الخريطة وعرض بياناته
+
     private Marker MDriverMarker;
     private DatabaseReference driverLocationRef ;
     private ValueEventListener driverLocationRefListener;
@@ -372,7 +543,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
                         btn_request.setText("السائق بالقرب منك ");
                     }
                     else{
-                        btn_request.setText("لقينا سواق : "+distance);
+                        btn_request.setText(" تحب تكمل الرحلة ولا نلغيها ؟ ");
 
                     }
                     {
@@ -393,21 +564,50 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
 
 
     }
+    private void getAssignedDriverInfo() {
+        bottomSheetDialog.show();
+        DatabaseReference mDriverDatabase=FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
 
-
-    private void setToolbar() {
-//         drawerLayout=findViewById(R.id.drawer_layout_driver);
-//        Toolbar toolbar = findViewById(R.id.rider_home_activity_toolbar);
-//         setSupportActionBar(toolbar);
-//        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
-//         drawerLayout.addDrawerListener(drawerToggle);
-//         drawerToggle.syncState();
-//        //remove name app
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-
+        mDriverDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()&&dataSnapshot.getChildrenCount()>0){
+                    Map<String,Object> map=(Map <String, Object>) dataSnapshot.getValue();
+                    if(map.get("name")!=null){
+                        mDriverName.setText(map.get("name").toString());
+                    }
+                    if(map.get("phone")!=null){
+                        mDriverPhone.setText(map.get("phone").toString());
+                    }
+                    if(map.get("carType")!=null){
+                        mDriverCar.setText(map.get("carType").toString());
+                    }
+                    if(map.get("profileImageUri")!=null){
+                        Glide.with(getApplicationContext()).load(map.get("profileImageUri").toString()).placeholder(R.drawable.ic_waiting).into(mDriverProfileImage);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
+
+
+        private void setToolbar() {
+              Toolbar toolbar = findViewById(R.id.toolbar_rider_home);
+              setSupportActionBar(toolbar);
+              drawerLayout = findViewById(R.id.drawer_layout_rider_home);
+              navigationView = findViewById(R.id.rider_home_nav_view);
+
+              drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+              drawerLayout.addDrawerListener(drawerToggle);
+              drawerToggle.syncState();
+              //remove name app
+              getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -456,8 +656,6 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
 
-
-
     }
 
 
@@ -499,7 +697,7 @@ public class RiderHome extends AppCompatActivity implements OnMapReadyCallback,
             case MY_PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
                 {
-                    mapFragment.getMapAsync(this);
+                    supportMapFragment.getMapAsync(this);
                 } else {
                     Toast.makeText(this,"please provide the permission ",Toast.LENGTH_SHORT).show();
                 }

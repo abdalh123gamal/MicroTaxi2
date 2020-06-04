@@ -20,6 +20,25 @@
         <item name="android:fontFamily">@font/elmessiri_medium</item>
     </style>
 
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="spinner_style">
+        <item name="android:dropDownWidth">533dp</item>
+        <item name="android:showDividers">none</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:dropDownHeight">70dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/elmessiri_medium</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+
+
+    </style>
 
     <style name="CustomDialog" parent="android:Theme.DeviceDefault.Dialog">
         <item name="android:fontFamily">@font/elmessiri_medium</item>

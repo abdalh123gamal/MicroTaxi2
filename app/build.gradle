@@ -58,6 +58,9 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     //circle image view
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    //CircularImageView
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
     //Realtime Database firebase
     implementation 'com.google.firebase:firebase-database:19.2.1'
     //Firebase Authentication
@@ -66,6 +69,9 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     //Geo Fire for Android — Realtime location queries with Firebase
     implementation 'com.firebase:geofire-android:3.0.0'
+    // Cloud Storage  Firebase
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+
 
     //Spots progress dialog
     implementation 'com.github.d-max:spots-dialog:0.7@aar'
@@ -75,6 +81,16 @@ dependencies {
     implementation 'com.github.glomadrian:MaterialAnimatedSwitch:1.1@aar'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    //Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding,
+    // memory and disk caching, and resource pooling into a simple and easy to use interface.
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    //RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Google-Directions-Android
+    implementation 'com.github.jd-alexander:library:1.1.0'
 
 
 }

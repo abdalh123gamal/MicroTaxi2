@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.WrapperListAdapter;
 
@@ -36,13 +37,23 @@ public class RegisterDriver extends AppCompatActivity {
     ProgressDialog pd;
     DatabaseReference databaseReference;
     EditText ed_email, ed_name, ed_phone, ed_password, ed_car_type;
-    Button btn_register;
-    ConstraintLayout register_driver;
+    Button btn_register,btn_exit;
+    LinearLayout register_driver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_driver);
         register_driver = findViewById(R.id.register_driver);
+
+        btn_exit=findViewById(R.id.register_driver_btn_exit);
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                return;
+            }
+        });
+
         ed_name = findViewById(R.id.register_driver_ed_name);
         ed_email = findViewById(R.id.register_driver_ed_email);
         ed_phone = findViewById(R.id.register_driver_ed_phone);
@@ -116,7 +127,7 @@ public class RegisterDriver extends AppCompatActivity {
             TextUtils.isEmpty(password);
             ed_password.setError("أدخل كلمة المرور ");
             TextUtils.isEmpty(car_type);
-            ed_password.setError("أدخل نوع السيارة  ");
+            ed_car_type.setError("أدخل نوع السيارة  ");
             return;
         } else if (email.isEmpty() && phone.isEmpty() & password.isEmpty() && car_type.isEmpty()) {
             TextUtils.isEmpty(email);
@@ -126,7 +137,7 @@ public class RegisterDriver extends AppCompatActivity {
             TextUtils.isEmpty(password);
             ed_password.setError("أدخل كلمة المرور ");
             TextUtils.isEmpty(car_type);
-            ed_password.setError("أدخل نوع السيارة  ");
+            ed_car_type.setError("أدخل نوع السيارة  ");
             return;
         } else if (phone.isEmpty() && password.isEmpty() && car_type.isEmpty()) {
             TextUtils.isEmpty(phone);
@@ -140,11 +151,11 @@ public class RegisterDriver extends AppCompatActivity {
             TextUtils.isEmpty(password);
             ed_password.setError("أدخل كلمة المرور ");
             TextUtils.isEmpty(car_type);
-            ed_password.setError("أدخل نوع السيارة  ");
+            ed_car_type.setError("أدخل نوع السيارة  ");
             return;
         } else if (car_type.isEmpty()) {
             TextUtils.isEmpty(car_type);
-            ed_password.setError("أدخل نوع السيارة  ");
+            ed_car_type.setError("أدخل نوع السيارة  ");
             return;
         }
     }

@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.abdalh.microtaxi.R;
@@ -32,14 +33,22 @@ public class RegisterRider extends AppCompatActivity {
     DatabaseReference databaseReference;
     ProgressDialog pd;
     EditText ed_email,ed_name,ed_phone,ed_password;
-    Button btn_register;
-    ConstraintLayout register_rider;
+    Button btn_register,btn_exit;
+    LinearLayout register_rider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_rider);
         register_rider=findViewById(R.id.register_rider);
+        btn_exit=findViewById(R.id.register_rider_btn_exit);
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                return;
+            }
+        });
 
 
         ed_name=findViewById(R.id.register_rider_ed_name);
@@ -120,7 +129,6 @@ public class RegisterRider extends AppCompatActivity {
             }
             else if (name.isEmpty()&&email.isEmpty()&&phone.isEmpty()&&password.isEmpty()){
                 Snackbar.make(register_rider,"الحقول فارغة ",Snackbar.LENGTH_SHORT).show();
-
                 TextUtils.isEmpty(name);
                 ed_name.setError("أدخل اسمك ");
                 TextUtils.isEmpty(email);

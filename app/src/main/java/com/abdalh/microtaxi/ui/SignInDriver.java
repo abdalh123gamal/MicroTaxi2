@@ -15,8 +15,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.abdalh.microtaxi.R;
-import com.abdalh.microtaxi.ui.MainActivity;
-import com.abdalh.microtaxi.ui.RegisterDriver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;

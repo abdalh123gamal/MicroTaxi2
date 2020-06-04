@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_rider"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingRiderInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:background="#60070606"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/setting_rider_rider_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:fontFamily="@font/elmessiri_bold"
+            android:gravity="center"
+            android:text="الملف الشخصي للراكب"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/setting_rider_iv_rider"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="107dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="0dp"
+            app:civ_shadow="false"
+            app:civ_shadow_color="@color/colorPrimaryDark"
+            app:civ_shadow_radius="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setting_rider_ed_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:hint="@string/register_rider_ed_hint_name">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setting_rider_ed_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:hint="@string/register_rider_ed_hint_email"
+                        android:inputType="textEmailAddress">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setting_rider_ed_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:enabled="true"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:hint="@string/register_rider_ed_hint_phone"
+                        android:inputType="phone">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="@dimen/_10sdp"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimaryDark">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setting_rider_ed_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:hint="@string/register_rider_ed_hint_password"
+                        android:inputType="textPassword">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <Button
+                        android:id="@+id/setting_rider_btn_edit"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:text="تعديل البيانات"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@android:color/holo_green_dark"
+                        app:cornerRadius="@dimen/_15sdp"
+                        app:strokeColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/setting_rider_btn_back"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="@font/elmessiri_medium"
+                        android:text="الخروج"
+                        app:backgroundTint="@android:color/holo_red_dark"
+                        app:cornerRadius="@dimen/_15sdp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

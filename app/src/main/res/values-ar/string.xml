@@ -4,6 +4,19 @@
     <string name="open">open</string>
     <string name="close">close</string>
 
+        <string-array name="lines">
+            <item> حلمية الزتون - عبود</item>
+            <item>صلاح سالم - رمسيس</item>
+            <item>الدقي - مدينة السلام</item>
+            <item>حلوان - دار السلام</item>
+            <item>بوابة علوم - سمنود</item>
+            <item>سمنود - السلاب</item>
+            <item>أجا - السلاب</item>
+            <item>محلة روح - الهايتم</item>
+            <item>بوابة علوم - المحلة</item>
+        </string-array>
+
+
     <string name="about_tv_about_micro_taxi">عن ميكروتكس</string>
     <string name="about_tv_about_sub_micro_taxi">يساعدك تطبيق ميكروتكس على تحديد وجهتك من خلال عدة خطوط</string>
     <string name="about_micro_tv_goals">الأهداف</string>
