@@ -7,19 +7,20 @@
     tools:context=".ui.RiderHome">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_7sdp"
-        android:background="@drawable/custome_toolbar"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:background="@color/transparent"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:visibility="visible">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_rider_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custome_toolbar"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/transparent"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@color/colorAccent"
+    android:layout_height="@dimen/_250sdp"
+    android:background="@color/md_deep_orange_200"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -20,8 +20,8 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/header_driver_iv_profile"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_10sdp"
             android:contentDescription="@string/nav_header_desc"
@@ -56,5 +56,14 @@
         android:text="driver1234@gmail.com"
 
         android:textSize="18sp" />
+
+    <RatingBar
+        android:id="@+id/header_driver_rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:isIndicator="true"
+        android:rating=".1" />
 
 </LinearLayout>

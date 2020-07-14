@@ -25,15 +25,16 @@
 
     <Switch
         android:id="@+id/driver_home_switch_run"
-        android:layout_width="@dimen/_270sdp"
+        android:layout_width="@dimen/_210sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:background="@drawable/bottom_sheet_background"
         android:capitalize="characters"
+        android:checked="true"
         android:fontFamily="@font/elmessiri_medium"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
-        android:text="تشغيل الموقع لإستقبال الطلبات"
+        android:text="تفعيل وضع استقبال الركاب"
         android:textAllCaps="false"
         android:textColor="@color/md_orange_900"
         android:textSize="@dimen/_12sdp"
@@ -52,6 +53,20 @@
         app:layout_constraintEnd_toStartOf="@+id/map_driver"
         app:layout_constraintStart_toEndOf="@+id/map_driver"
         app:srcCompat="@drawable/ic_arrow_up_info" />
+
+    <Button
+        android:id="@+id/driver_home_btn_picked_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/elmessiri_regular"
+        android:text="قبول الراكب "
+        android:visibility="visible"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:cornerRadius="@dimen/_15sdp"
+        app:layout_constraintBottom_toTopOf="@+id/driver_home_iv_info_rider_show_bottom_sheet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/map_driver" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

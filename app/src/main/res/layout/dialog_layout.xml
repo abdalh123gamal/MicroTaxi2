@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:fontFamily="@font/elmessiri_regular"
+            android:gravity="center"
+            android:text="تشغيل خدمات الموقع أو إيقاف تشغيلها في ميكروتكس على جهازك ؟"
+            android:textSize="@dimen/_15sdp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:fontFamily="@font/elmessiri_regular"
+            android:gravity="center"
+            android:text="منح التطبيق الإذن لاستخدام موقعك"
+            android:textSize="@dimen/_10sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/elmessiri_regular"
+            android:text="الذهاب للإعدادات"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:cornerRadius="@dimen/_15sdp" />
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/elmessiri_regular"
+            android:text="إغلاق"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:cornerRadius="@dimen/_15sdp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+</LinearLayout>

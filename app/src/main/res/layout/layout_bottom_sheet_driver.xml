@@ -10,29 +10,30 @@
     android:orientation="vertical"
     tools:context=".ui.DriverHome">
 
-    <TextView
-        android:id="@+id/bottom_sheet_driver_container_tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_sheet_background"
-        android:fontFamily="@font/elmessiri_medium"
-        android:gravity="center"
-        android:padding="@dimen/_5sdp"
-        android:text="بيانات السائق"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_sheet_background"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bottom_sheet_driver_container_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bottom_sheet_background"
+            android:fontFamily="@font/elmessiri_medium"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="بيانات السائق"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/bottom_sheet_driver_container_iv_profile"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_gravity="center"
             android:padding="@dimen/_3sdp"
             android:scaleType="centerCrop"
@@ -48,32 +49,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/_5sdp"
-        android:weightSum="2">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/bottom_sheet_driver_container_tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/_3sdp"
             android:fontFamily="@font/elmessiri_regular"
             android:gravity="center"
+            android:text="عبدالله جمال "
             android:textAllCaps="false"
             android:textColor="@color/colorAccent"
-            android:textSize="15sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_2sdp"
             android:fontFamily="@font/elmessiri_regular"
             android:gravity="center"
             android:text="قائد المركبة"
-            android:textSize="12sp" />
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -90,110 +90,146 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            android:weightSum="3">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_margin="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/elmessiri_medium"
-                    android:gravity="center"
-                    android:text="تكلفة الرحلة"
-                    android:textSize="12sp" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_5sdp"
-                    android:layout_weight="1"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_margin="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/button5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/elmessiri_medium"
+                            android:gravity="center"
+                            android:text="تكلفة الرحلة"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:text="10EG"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_vertical"
+                        android:layout_margin="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/elmessiri_medium"
+                            android:gravity="center"
+                            android:text="نوع المركبة"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/bottom_sheet_driver_container_tv_car_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_margin="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/elmessiri_medium"
+                            android:gravity="center"
+                            android:text="رقم السائق"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/bottom_sheet_driver_container_tv_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/elmessiri_medium"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/elmessiri_regular"
                     android:gravity="center"
-                    android:padding="@dimen/_5sdp"
-                    android:text="25EG"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:text="تقييم السائق" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="clip_vertical"
-                android:layout_margin="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
+                <RatingBar
+                    android:id="@+id/bottom_sheet_driver_container_ratingBar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/elmessiri_medium"
-                    android:gravity="center"
-                    android:text="نوع المركبة"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/bottom_sheet_driver_container_tv_car_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/elmessiri_regular"
-                    android:gravity="center"
-                    android:padding="@dimen/_5sdp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:stepSize=".1" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/elmessiri_medium"
-                    android:gravity="center"
-                    android:text="رقم السائق"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/bottom_sheet_driver_container_tv_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/elmessiri_medium"
-                    android:gravity="center"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

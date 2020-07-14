@@ -13,88 +13,69 @@
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-174dp"
-        tools:layout_editor_absoluteY="184dp">
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="146dp">
 
     </fragment>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/rider_home_view_search_and_selected_Dialog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:theme="@style/RobotoTextViewStyle"
-        app:cardCornerRadius="@dimen/_13sdp"
-        app:cardElevation="@dimen/_10sdp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:cardBackgroundColor="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/map_rider">
+        app:layout_constraintTop_toTopOf="parent">
 
-
-        <TextView
-            android:id="@+id/rider_home_tv_title_welcom"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_gravity="center"
-            android:background="@drawable/custome_spinner"
-            android:fontFamily="@font/elmessiri_medium"
-            android:gravity="center"
-            android:text="صباح الخير  .. تحب تروح فين ؟"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/_17sdp" />
+            android:layout_height="match_parent"
+            android:background="@drawable/background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rider_home_tv_title_welcom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/elmessiri_medium"
+                android:gravity="center"
+                android:text="صباح الخير  .. تحب تروح فين ؟"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/_15sdp" />
+
+            <fragment
+                android:id="@+id/autocomplete_fragment"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rider_home_layout_container"
+    <Button
+        android:id="@+id/rider_home_btn_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/transparent"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Spinner
-            android:id="@+id/rider_home_sp_lines"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_gravity="center"
-            android:background="@drawable/bottom_sheet_background"
-            android:dropDownSelector="@color/ic_launcher_app_background"
-            android:entries="@array/lines"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:spinnerMode="dialog"
-            android:theme="@style/spinner_style"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/rider_home_btn_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:ellipsize="middle"
-            android:fontFamily="@font/elmessiri_medium"
-            android:text="بحث"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            app:backgroundTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rider_home_sp_lines" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginBottom="8dp"
+        android:ellipsize="middle"
+        android:fontFamily="@font/elmessiri_medium"
+        android:text="بحث"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/rider_home_iv_info_driver_show_bottom_sheet"
+        app:layout_constraintEnd_toStartOf="@+id/map_rider"
+        app:layout_constraintStart_toEndOf="@+id/map_rider" />
 
     <ImageView
         android:id="@+id/rider_home_iv_info_driver_show_bottom_sheet"

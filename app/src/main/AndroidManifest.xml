@@ -2,15 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.abdalh.microtaxi">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:debuggable="true"
@@ -21,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".ui.SettingDriverInfo"></activity>
+        <service android:name=".ui.OnAppKilled" android:stopWithTask="false"></service>
+        <activity android:name=".ui.HistorySingleActivity"></activity>
+        <activity android:name=".ui.HistoryActivity" />
+        <activity android:name=".ui.SettingDriverInfo" />
         <activity android:name=".ui.SettingRiderInfo" />
         <activity
             android:name=".ui.RiderHome"
@@ -31,7 +28,6 @@
             android:name=".ui.DriverHome"
             android:label="@string/title_activity_driver_home"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".ui.RegisterDriver" />
         <activity android:name=".ui.RegisterRider" />
         <activity android:name=".ui.SignInDriver" />

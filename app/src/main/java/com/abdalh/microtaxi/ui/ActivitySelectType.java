@@ -2,6 +2,7 @@ package com.abdalh.microtaxi.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,8 @@ public class ActivitySelectType extends AppCompatActivity {
         iv_driver=findViewById(R.id.activity_select_type_iv_driver);
         iv_passenger=findViewById(R.id.activity_select_type_iv_passenger);
 
-        iv_driver.setOnClickListener(new View.OnClickListener() {
+         startService(new Intent(ActivitySelectType.this,OnAppKilled.class));
+    iv_driver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 auth=FirebaseAuth.getInstance();

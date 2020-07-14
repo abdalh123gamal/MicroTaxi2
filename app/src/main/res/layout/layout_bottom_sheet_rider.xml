@@ -30,8 +30,8 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/bottom_sheet_rider_container_iv_image"
-            android:layout_width="@dimen/_85sdp"
-            android:layout_height="@dimen/_85sdp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_gravity="center"
             android:padding="@dimen/_3sdp"
             android:scaleType="centerCrop"
@@ -63,7 +63,7 @@
             android:padding="@dimen/_5sdp"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
